@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/models/tasks.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screeens/add_task_screen.dart';
 import 'package:todoey/widgets/task_list.dart';
 
-class TaskScreen extends StatefulWidget {
+class TaskScreen extends StatelessWidget {
   const TaskScreen({Key? key}) : super(key: key);
 
-  @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
-  List<Task> taskList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +23,9 @@ class _TaskScreenState extends State<TaskScreen> {
                 return AddTaskScreen(
                   addTaskCallback: (newTaskTitle) {
                     if (newTaskTitle != null) {
-                      setState(() {
-                        taskList.add(Task(taskName: newTaskTitle));
-                      });
+                      // setState(() {
+                      //   taskList.add(Task(taskName: newTaskTitle));
+                      // });
                     }
                     Navigator.pop(context);
                   },
@@ -69,7 +64,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   ),
                 ),
                 Text(
-                  taskList.length.toString(),
+                  Provider.of<TaskData>(context).taskCount.toString(),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
@@ -90,8 +85,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     topLeft: Radius.circular(20.0),
                     topRight: Radius.circular(20.0),
                   )),
-              child: TaskList(
-                tasks: taskList,
+              child: const TaskList(
               ),
             ),
           ),
