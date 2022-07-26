@@ -20,15 +20,7 @@ class TaskScreen extends StatelessWidget {
               isScrollControlled: true,
               context: context,
               builder: (context) {
-                return AddTaskScreen(
-                  addTaskCallback: (newTaskTitle) {
-                    if (newTaskTitle != null) {
-                      // setState(() {
-                      //   taskList.add(Task(taskName: newTaskTitle));
-                      // });
-                    }
-                    Navigator.pop(context);
-                  },
+                return const AddTaskScreen(
                 );
               });
         },
